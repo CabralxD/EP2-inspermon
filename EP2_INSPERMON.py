@@ -1,10 +1,11 @@
 #inspermons:
-pythonxu={"ataque":30,"defesa":20,"vida":100}
-fegamel={"ataque":40,"defesa":50,"vida":70}
-deusvult={"ataque":50,"defesa":10,"vida":50}
+pythonxu={"ataque":30,"defesa":20,"vida":100} #N:0
+fegamel={"ataque":40,"defesa":50,"vida":70} #N:1
+deusvult={"ataque":50,"defesa":10,"vida":50} #N:2
 
-insperdex=[["pythonxu",30,20,100],["fegamel",40,50,70],["deusvult",50,10,50]]
-insperdéx=[]
+insperdex=[["pythonxu",50,20,100,"N:0"],["fegamel",40,40,70,"N:1"],["deusvult",55,10,50,"N:2"]]
+insperdéx=["-"]*20
+XP=0
 
 import time
 import random
@@ -21,12 +22,28 @@ def batalha(mon,ini,insperdéx,insperdex):
 	
 	while vidajog>0 and vidaini>0:
 	 	print("você atacou!")
-	 	vidaini=(vidaini)-(insperdex[mon][1])-(insperdex[ini][2])
+	 	w=random.randint(0,19)
+	 	if w==10:
+	 		print("ataque crítico!")
+	 		if ((insperdex[mon][1]*1.5)-(insperdex[ini][2]))<0:
+	 			print("o inspermon inimigo se defendeu do ataque!")
+	 		else:
+	 			vidaini=(vidaini)-((insperdex[mon][1]*1.5)-(insperdex[ini][2]))
+	 	if w!=10:
+	 		if ((insperdex[mon][1])-(insperdex[ini][2]))<0:
+				print ("O inspermon inimigo se defendeu do ataque!")
+			else:
+				vidaini=(vidaini)-((insperdex[mon][1])-(insperdex[ini][2]))
+
+	 	
 	 	print("a vida do seu inimigo agora é de: {}".format(vidaini))
 	 	
 	 	if vidaini>0:
 	 		print ("seu oponente ataca!")
-	 		vidajog=vidajog-(ataquedoini)-(defdojog)
+	 		if (insperdex[ini][1]-insperdéx[mon][2])<0:
+	 			print("O seu inspermon se defendeu do ataque inimigo!")
+	 		else:	
+	 			vidajog=vidajog-(insperdex[ini][1]-insperdéx[mon][2])
 	 		print("a vida de seu inspermon agora é de: {}".format(vidajog))
 	 		q=input("oque você quer fazer: 'lutar' ou 'fugir'?")
 	 	if q=="fugir":
@@ -35,8 +52,8 @@ def batalha(mon,ini,insperdéx,insperdex):
 	if vidaini<=0:
 		print ("você venceu!")
 		if not(insperdex[ini] in insperdéx):
-			insperdéx.append(insperdex[ini])
-		command="nada"
+			insperdéx[ini]=(insperdex[ini])
+			command="nada"
 
 	if vidajog<=0:
 		print("você perdeu...")
@@ -45,6 +62,7 @@ def batalha(mon,ini,insperdéx,insperdex):
 	if q=="fugir":
 		print("você fugiu")
 		command="nada"
+	
 	return (command)
 
 	 
@@ -65,16 +83,18 @@ time.sleep(4)
 insp=input("escolha um inspermon: pythonxu, fegamel, deusvult: ")
 
 if insp=="pythonxu":
-	insperdéx.append(insperdex[0])
+	insperdéx[0]=(insperdex[0])
 	mon=0
 	
 if insp=="fegamel":
-	insperdéx.append(insperdex[1])
+	insperdéx[1]=(insperdex[1])
 	mon=1
 if insp=="deusvult":
-	insperdéx.append(insperdex[2])
+	insperdéx[2]=(insperdex[2])
 	mon=2
 
+time.sleep(1.5)
+print("você escolheu {}!".format(insperdex[mon][0]))
 command="nada"
 
 time.sleep(2.5)
@@ -82,10 +102,11 @@ print("lembresse: quando você vir a opção 'o que você quer fazer?' você pod
 print("------passear (para achar inspermons)")
 print("------dormir (para retornar a sua casa e sair do jogo)")
 print("------insperdéx (para ver os innspermons que você encontrou e venceu)")
+print("------trocar (para substituir o inspermon que você utilizara na próxima batalha)")
 
 
 while command!="dormir":
-	comand=input("oque voce quer fazer?")
+	command=input("oque voce quer fazer?: ")
 	for h in range (3):
 		print("...")
 		time.sleep(1)
@@ -93,13 +114,40 @@ while command!="dormir":
 	if command=="passear":
 		ini=random.randint(0,2)
 		command=batalha(mon,ini,insperdéx,insperdex)
+		if command!="dormir"
+			XP=XP+1
+			print("seu inspermon ganhou experiência!")
+		
+		if XP==10:
+			for h in range (3):
+				print("...")
+				time.sleep(1)
+			for i in range(1,3):
+				insperdéx[mon][i]=insperdéx[mon][i]+5
+				print("seu inspermon evoluiu!")
+				print(insperdéx[mon])
+				XP=1
+
 
 	if command=="insperdéx":
-		print(insperdéx)
+		for h in range(len(insperdéx)):
+			print(insperdéx[h])
+	
+	if command=="trocar":
+		for h in range(len(insperdéx)):
+			print(insperdéx[h])
+		print("escolha um inspermon de seu insperdéx")
+		y=mon
+		x=input("diga o número do inspermon você gostaria de utilizar?: ")
+		mon=x
+		if not (x in insperdéx):
+			mon=y 
+
 	else:
 		for h in range(3):
 			print(".",end="")
 			time.sleep(1)
+
 
 
 
