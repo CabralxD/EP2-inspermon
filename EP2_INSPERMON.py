@@ -27,68 +27,66 @@ def batalha(mon,ini,insperdéx,insperdex):
 	
     while vidajog>0 and vidaini>0:
         
-        print("você atacou!")
-        w=random.randint(0,19)
+        if vidajog>0 and vidaini>0:
+            q=input("oque você quer fazer: 'lutar' ou 'fugir'?")
         
-        if w==10:       #ataque crítico!
-            print("ataque crítico!")
+        if q=="lutar":
+            print("você atacou!")
+            w=random.randint(0,19)
+        
+            if w==10:       #ataque crítico!
+                print("ataque crítico!")
             
-            if ((insperdex[mon][1]*1.5)-(insperdex[ini][2]))<0:
-                print("o inspermon inimigo se defendeu do ataque!")
+                if ((insperdex[mon][1]*1.5)-(insperdex[ini][2]))<0:
+                    print("o inspermon inimigo se defendeu do ataque!")
             
-            else:
-                vidaini=(vidaini)-((insperdex[mon][1]*1.5)-(insperdex[ini][2]))
-                print("a vida do seu inimigo agora é de {}".format(vidaini))
+                else:
+                    vidaini=(vidaini)-((insperdex[mon][1]*1.5)-(insperdex[ini][2]))
+                    print("a vida do seu inimigo agora é de {}".format(vidaini))
 
-        else:    #ataque normal
+            else:    #ataque normal
                 
-            if ((insperdex[mon][1])-(insperdex[ini][2]))<0:
-                print ("O inspermon inimigo se defendeu do ataque!")
+                if ((insperdex[mon][1])-(insperdex[ini][2]))<0:
+                	print ("O inspermon inimigo se defendeu do ataque!")
                 
-            else:
-                vidaini=vidaini-((insperdex[mon][1])-(insperdex[ini][2]))
-                print("a vida do seu inimigo agora é de: {}".format(vidaini))
+                else:
+                	vidaini=vidaini-((insperdex[mon][1])-(insperdex[ini][2]))
+                	print("a vida do seu inimigo agora é de: {}".format(vidaini))
 		
-        time.sleep(1)
-        
-        if vidaini>0:
-            print ("seu oponente ataca!")
-            time.sleep(1)
+        	
             
-            if (insperdex[ini][1]-insperdéx[mon][2])<=0:
-                print("O seu inspermon se defendeu do ataque inimigo!")
-            
-            else:	
-                vidajog=vidajog-(insperdex[ini][1]-insperdéx[mon][2])
-                print("a vida de seu inspermon agora é de: {}".format(vidajog))
+            if vidaini>0:
+            	
+                print ("seu oponente ataca!")
+                time.sleep(1)
+                if (insperdex[ini][1]-insperdéx[mon][2])<=0:
+                	print("O seu inspermon se defendeu do ataque inimigo!")
+                else:	
+                	vidajog=vidajog-(insperdex[ini][1]-insperdéx[mon][2])
+                	print("a vida de seu inspermon agora é de: {}".format(vidajog))
                
 	 
-        if vidaini<=0:
-            print ("você venceu!")
-            if not(insperdex[ini] in insperdéx):
-                insperdéx[ini]=(insperdex[ini])
-                command="nada"
-        
-        if vidajog<=0:
-            print("você perdeu...")
-            command="dormir"
+            if vidaini<=0:
+            	print ("você venceu!")
+            	if not(insperdex[ini] in insperdéx):
+                	insperdéx[ini]=(insperdex[ini])
+                	print("parabéns você capturou um novo inspermon")
+            	command="nada"
+        	
+            if vidajog<=0:
+            	print("você perdeu...")
+            	command="dormir"
 
         
-        if vidajog>0 and vidaini>0:
-        	q=input("oque você quer fazer: 'lutar' ou 'fugir'?")
-            
-		
+        
         if q=="fugir":
-            if vidajog<=0:
-            	print("você perdeu")
-            	command="dormir"           #caso a pessoa repare a derrota e tente fugir após seu inspermon ter ficado sem vida ele perde
-            else:
-            	print("você fugiu")
-            	command="nada"
-        else:
-        	continue
+            print("você fugiu!")
+            command="fuga"
+            break
+    
 	
     return (command)
+
 
 	 
 	
@@ -145,7 +143,7 @@ while command!="dormir":
 	if command=="passear":
 		ini=random.randint(0,2)
 		command=batalha(mon,ini,insperdéx,insperdex)
-		if command!="dormir":
+		if command=="nada":
 			XP=XP+1
 			print("seu inspermon ganhou experiência!")
 		
