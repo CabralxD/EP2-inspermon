@@ -20,6 +20,7 @@ insperdex=[["pythonxu",50,20,100,"N:0"],["fegamel",40,40,70,"N:1"],["deusvult",5
 ["karcana",60,60,90,"N:11"],["nihibloco",70,40,100,"N:12"],["viguvigu",75,40,95,"N:13"],["fairinhow",55,65,90,"N:14"]]
 insperdéx=["-"]*20
 XP=0
+LV=0
 
 import time
 import random
@@ -157,7 +158,7 @@ while command!="DORMIR":
 	if command=="PASSEAR":
 		ini=random.randint(0,14)
 		command=batalha(mon,ini,insperdéx,insperdex)
-		if command=="LUTAR":
+		if command=="NADA":
 			XP=XP+1
 			print("Seu Inspermon ganhou experiência!")
 		
@@ -167,9 +168,10 @@ while command!="DORMIR":
 				time.sleep(1)
 			for i in range(1,3):
 				insperdéx[mon][i]=insperdéx[mon][i]+5
-				print("Seu Inspermon evoluiu!")
-				print(insperdéx[mon])
-				XP=1
+			print("Seu Inspermon evoluiu!")
+			print(insperdéx[mon])
+			XP=1
+			LV=LV+1
 
 
 	if command=="INSPERDÉX":
