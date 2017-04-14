@@ -1,24 +1,23 @@
 pythonxu={"ataque":30,"defesa":20,"vida":100} #N:0   
 fegamel={"ataque":40,"defesa":40,"vida":70} #N:1
-deusvult={"ataque":50,"defesa":20,"vida":80} #N:2         # Os 5 primeiros são insperemons de valores "mais fracos"
+deusvult={"ataque":50,"defesa":20,"vida":80} #N:2         # Os 5 primeiros são pokemons de valores "mais fracos"
 bubbassalto={"ataque":55,"defesa":20,"vida":75} #N:3
 charmandela={"ataque":35,"defesa":45,"vida":70} #N:4
 feche={"ataque":40,"defesa":30,"vida":110} #N:5
 celera={"ataque":50,"defesa":50,"vida":80} #N:6
-alohomora={"ataque":60,"defesa":30,"vida":90} #N:7        # 5 inspermons intermediários
+alohomora={"ataque":60,"defesa":30,"vida":90} #N:7        # 5 pokemons intermediários
 cartertorta={"ataque":65,"defesa":30,"vida":85} #N:8
 zubate={"ataque":45,"defesa":55,"vida":80} #N:9
 roberstoise={"ataque":50,"defesa":40,"vida":120} #N:10
 karcana={"ataque":60,"defesa":60,"vida":90} #N:11
-agaraga={"ataque":70,"defesa":40,"vida":100} #N:12      # Os mais fortes
+nihibloco={"ataque":70,"defesa":40,"vida":100} #N:12      # Os mais fortes
 viguvigu={"ataque":75,"defesa":40,"vida":95} #N:13
 fairinhow={"ataque":55,"defesa":65,"vida":90} #N:14
 
 
-insperdex=[["pythonxu",50,20,100,"N:0"],["fegamel",40,40,70,"N:1"],["deusvult",55,10,50,"N:2"],["bubbassalto",55,20,75,"N:3"],
-["charmandela",35,45,70,"N:4"],["feche",40,30,110,"N:5"],["celera",50,50,80,"N:6"],["alohomora",60,30,90,"N:7"],["catertorta",65,30,85,"N:8"],
-["zubate",45,55,80,"N:9"],["roberstoise",50,40,120,"N:10"],["karcana",60,60,90,"N:11"],["agaraga",70,40,100,"N:12"],["viguvigu",75,40,95,"N:13"],
-["fairinhow",55,65,90,"N:14"]]
+insperdex=[["pythonxu",50,20,100,"N:0"],["fegamel",40,40,70,"N:1"],["deusvult",55,10,50,"N:2"],["bubbassalto",55,20,80,"N:3"],["charmandela",35,45,70,"N:4"],
+["feche",40,30,110,"N:5"],["celera",50,50,80,"N:6"],["alohomora",60,30,90,"N:7"],["cartertorta",65,30,90,"N:8"],["zubate",45,55,80,"N:9"],["robertoise",50,40,120,"N:10"],
+["karcana",60,60,90,"N:11"],["nihibloco",70,40,100,"N:12"],["viguvigu",75,40,95,"N:13"],["fairinhow",55,65,90,"N:14"]]
 insperdéx=["-"]*20
 XP=0
 
@@ -30,7 +29,7 @@ command="NADA"
 def batalha(mon,ini,insperdéx,insperdex):
     print("Um Inspermón selvagem apareceu!")
     time.sleep(1.5)
-    print("Seu Inspermón: {},ataque:{},defesa:{},vida:{}".format(insperdex[mon][0],insperdex[mon][1],insperdex[mon][2],insperdex[mon][3]))
+    print("Seu Inspermon: {},ataque:{},defesa:{},vida:{}".format(insperdex[mon][0],insperdex[mon][1],insperdex[mon][2],insperdex[mon][3]))
     time.sleep(1)
     print("""inspermon selvagem: {},
 		               ataque: {},
@@ -106,7 +105,7 @@ def batalha(mon,ini,insperdéx,insperdex):
 	 
 	
 
-for h in range(10):
+for h in range(20):
 	print(" ")		
 
 
