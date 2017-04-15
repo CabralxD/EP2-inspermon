@@ -26,6 +26,7 @@ import time
 import random
 
 command="NADA"
+pauseplay="JOGAR"
 
 def batalha(mon,ini,insperdéx,insperdex):
     print("Um Inspermón selvagem apareceu!")
@@ -61,7 +62,7 @@ def batalha(mon,ini,insperdéx,insperdex):
 
             else:    #ataque normal
                 
-                if ((insperdex[mon][1])-(insperdex[ini][2]))<0:
+                if ((insperdex[mon][1])-(insperdex[ini][2]))<=0:
                 	print ("O inspermon inimigo se defendeu do ataque!")
                 
                 else:
@@ -90,7 +91,7 @@ def batalha(mon,ini,insperdéx,insperdex):
         	
             if vidajog<=0:
             	print("Você perdeu...")
-            	command="DORMIR"
+            	command="DERROTA"
 
         
         
@@ -101,6 +102,68 @@ def batalha(mon,ini,insperdéx,insperdex):
     
 	
     return (command)
+
+
+
+
+def loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha):
+	
+	while command!="DORMIR" and command!="DERROTA":
+		
+		command=str(input("O que voce quer fazer?: ")).upper()
+	
+		for h in range (3):
+			print("...")
+			time.sleep(1)
+
+		if command=="PASSEAR":
+			ini=random.randint(0,14)
+			command=batalha(mon,ini,insperdéx,insperdex)
+			if command=="NADA":
+				XP=XP+1
+				print("Seu Inspermon ganhou experiência!")
+		
+			if XP==10:
+				for h in range (3):
+					print("...")
+					time.sleep(1)
+				for i in range(1,3):
+					insperdéx[mon][i]=insperdéx[mon][i]+5
+				print("Seu Inspermon evoluiu!")
+				print(insperdéx[mon])
+				XP=1
+				LV=LV+1
+
+
+		if command=="INSPERDÉX":
+			for h in range(len(insperdéx)):
+				print(insperdéx[h])
+	
+		if command=="TROCAR":
+			for h in range(len(insperdéx)):
+				print(insperdéx[h])
+			print("Escolha um Inspermon de seu Insperdéx")
+			y=mon
+			x=input("Diga o número do Inspermon você gostaria de utilizar: ")
+			mon=x
+			if not (x in insperdéx):
+				mon=y 
+
+		else:
+			for h in range(3):
+				print("...")
+				time.sleep(1)
+
+
+	print("Você está em  casa!\n Até a próxima!\n")
+	
+	if command=="DORMIR":
+		pauseplay="PAUSE"
+	
+	if command=="DERROTA":
+		pauseplay="DERROTA"
+	
+	return (pauseplay)
 
 
 	 
@@ -143,64 +206,37 @@ command="nada"
 time.sleep(2.5)
 print("Lembre-se: quando você vir a opção 'O que você quer fazer?', Você poderá escolher entre:")
 print("------passear (para achar inspermons)")
-print("------dormir (para retornar a sua casa e sair do jogo)")
+print("------dormir (para retornar a sua casa e pausa o jogo)")
 print("------insperdéx (para ver os innspermons que você encontrou e venceu)")
 print("------trocar (para substituir o inspermon que você utilizara na próxima batalha)")
 
 
-while command!="DORMIR":
-	command=str(input("O que voce quer fazer?: ")).upper()
+
+time.sleep(2)
+for h in range(5):
+	print("")
+
+
+
+
+while True:         #Loop fechado em que o jogo funciona
 	
-	for h in range (3):
-		print("...")
-		time.sleep(1)
-
-	if command=="PASSEAR":
-		ini=random.randint(0,14)
-		command=batalha(mon,ini,insperdéx,insperdex)
-		if command=="NADA":
-			XP=XP+1
-			print("Seu Inspermon ganhou experiência!")
-		
-		if XP==10:
-			for h in range (3):
-				print("...")
-				time.sleep(1)
-			for i in range(1,3):
-				insperdéx[mon][i]=insperdéx[mon][i]+5
-			print("Seu Inspermon evoluiu!")
-			print(insperdéx[mon])
-			XP=1
-			LV=LV+1
-
-
-	if command=="INSPERDÉX":
-		for h in range(len(insperdéx)):
-			print(insperdéx[h])
+	if pauseplay=="JOGAR":
+		command="NADA"
+		pauseplay=loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha)
 	
-	if command=="TROCAR":
-		for h in range(len(insperdéx)):
-			print(insperdéx[h])
-		print("Escolha um Inspermon de seu Insperdéx")
-		y=mon
-		x=input("Diga o número do Inspermon você gostaria de utilizar: ")
-		mon=x
-		if not (x in insperdéx):
-			mon=y 
+	if pauseplay=="PAUSE":
+		print ("MENU")
+		pauseplay=str(input("Escreva 'jogar' para retomar o jogo ou 'salvar' para salvar sua sessão de jogo e sair: ")).upper()
+		if pauseplay=="JOGAR":
+			print("resumindo o jogo...")
+			time.sleep(2)
+			print("")
 
-	else:
-		for h in range(3):
-			print(".",end="")
-			time.sleep(1)
-
-
-
-
-
-
-
-
-
-
-
-print("Você está em  casa!\n Até a próxima!\n")
+	if pauseplay=="SALVAR":
+		print ("JOGO SALVO ATÉ A PRÓXIMA!")
+		break
+	
+	if pauseplay=="DERROTA":
+		print("FIM DO JOGO")
+		break
