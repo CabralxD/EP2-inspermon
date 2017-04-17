@@ -10,14 +10,14 @@ cartertorta={"ataque":65,"defesa":30,"vida":85} #N:8
 zubate={"ataque":45,"defesa":55,"vida":80} #N:9
 roberstoise={"ataque":50,"defesa":40,"vida":120} #N:10
 karcana={"ataque":60,"defesa":60,"vida":90} #N:11
-nihibloco={"ataque":70,"defesa":40,"vida":100} #N:12      # Os mais fortes
+agaraga={"ataque":70,"defesa":40,"vida":100} #N:12      # Os mais fortes
 viguvigu={"ataque":75,"defesa":40,"vida":95} #N:13
 fairinhow={"ataque":55,"defesa":65,"vida":90} #N:14
 
 
 insperdex=[["pythonxu",50,20,100,"N:0"],["fegamel",40,40,70,"N:1"],["deusvult",55,10,50,"N:2"],["bubbassalto",55,20,80,"N:3"],["charmandela",35,45,70,"N:4"],
 ["feche",40,30,110,"N:5"],["celera",50,50,80,"N:6"],["alohomora",60,30,90,"N:7"],["cartertorta",65,30,90,"N:8"],["zubate",45,55,80,"N:9"],["robertoise",50,40,120,"N:10"],
-["karcana",60,60,90,"N:11"],["nihibloco",70,40,100,"N:12"],["viguvigu",75,40,95,"N:13"],["fairinhow",55,65,90,"N:14"]]
+["karcana",60,60,90,"N:11"],["agaraga",70,40,100,"N:12"],["viguvigu",75,40,95,"N:13"],["fairinhow",55,65,90,"N:14"]]
 insperdéx=["-"]*20
 XP=0
 LV=0
@@ -134,7 +134,7 @@ def loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha):
 				XP=1
 				LV=LV+1
 
-
+		
 		if command=="INSPERDÉX":
 			for h in range(len(insperdéx)):
 				print(insperdéx[h])
@@ -156,7 +156,10 @@ def loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha):
 
 
 	print("Você está em  casa!\n Até a próxima!\n")
-	
+	'''
+	if command=="SALVAR":
+		pauseplay="SALVAR"
+	'''
 	if command=="DORMIR":
 		pauseplay="PAUSE"
 	
@@ -209,6 +212,7 @@ print("------passear (para achar inspermons)")
 print("------dormir (para retornar a sua casa e pausa o jogo)")
 print("------insperdéx (para ver os innspermons que você encontrou e venceu)")
 print("------trocar (para substituir o inspermon que você utilizara na próxima batalha)")
+print("------salvar (salva seu Insperdéx para utilizá-lo depois)")
 
 
 
@@ -223,20 +227,40 @@ while True:         #Loop fechado em que o jogo funciona
 	
 	if pauseplay=="JOGAR":
 		command="NADA"
+		'''
+		with open("save.txt","r") as save:
+		'''
 		pauseplay=loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha)
 	
 	if pauseplay=="PAUSE":
 		print ("MENU")
 		pauseplay=str(input("Escreva 'jogar' para retomar o jogo ou 'salvar' para salvar sua sessão de jogo e sair: ")).upper()
 		if pauseplay=="JOGAR":
-			print("resumindo o jogo...")
+			print("Resumindo o jogo...")
 			time.sleep(2)
 			print("")
 
 	if pauseplay=="SALVAR":
-		print ("JOGO SALVO ATÉ A PRÓXIMA!")
+		'''
+		with open("save.txt","w") as save:
+			save.writelines(insperdéx)
+			save.writelines(LV)
+			save.writelines(XP)
+		'''
+		time.sleep(1.5)	
+		print ("Jogo salvo! ATÉ A PRÓXIMA!")
 		break
 	
 	if pauseplay=="DERROTA":
-		print("FIM DO JOGO")
+		print("FIM DE JOGO")
+		time.sleep(2)
+		print("Salvando...")
+		time.sleep(3)
+		print("Jogo Salvo")
+		'''
+		with open("save.txt","w") as save:
+			save.writelines(insperdéx)
+			save.writelines(LV)
+			save.writelines(XP)
+		'''
 		break
