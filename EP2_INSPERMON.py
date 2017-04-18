@@ -117,19 +117,8 @@ def loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha):
 			time.sleep(1)
 
 		if command=="PASSEAR":
-			
-			if LV<5:	
-				ini=random.randint(0,5)
-				command=batalha(mon,ini,insperdéx,insperdex)
-
-			if LV>=5 and LV<10:
-				ini=random.randint(0,9)
-				command=batalha(mon,ini,insperdéx,insperdex)
-
-			if LV>=10 and LV<15:
-				ini=random.randint(0,14)
-				command=batalha(mon,ini,insperdéx,insperdex)
-			
+			ini=random.randint(0,14)
+			command=batalha(mon,ini,insperdéx,insperdex)
 			if command=="NADA":
 				XP=XP+1
 				print("Seu Inspermon ganhou experiência!")
@@ -262,8 +251,16 @@ while True:         #Loop fechado em que o jogo funciona
 		print ("Jogo salvo! ATÉ A PRÓXIMA!")
 		break
 	
-	
 	if pauseplay=="DERROTA":
 		print("FIM DE JOGO")
-		
+		time.sleep(2)
+		print("Salvando...")
+		time.sleep(3)
+		print("Jogo Salvo")
+		'''
+		with open("save.txt","w") as save:
+			save.writelines(insperdéx)
+			save.writelines(LV)
+			save.writelines(XP)
+		'''
 		break
