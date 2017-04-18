@@ -257,10 +257,10 @@ while True:         #Loop fechado em que o jogo funciona
 		print("Salvando...")
 		time.sleep(3)
 		print("Jogo Salvo")
-		'''
+		
 		with open("save.txt","w") as save:
-			save.writelines(insperdéx)
-			save.writelines(LV)
-			save.writelines(XP)
-		'''
+			save.writelines({}.format(insperdéx))
+			save.writelines({}.format(LV))
+			save.writelines({}.format(XP))
+		
 		break
