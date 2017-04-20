@@ -117,8 +117,19 @@ def loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha):
 			time.sleep(1)
 
 		if command=="PASSEAR":
-			ini=random.randint(0,14)
-			command=batalha(mon,ini,insperdéx,insperdex)
+			
+			if LV<5:	
+				ini=random.randint(0,5)
+				command=batalha(mon,ini,insperdéx,insperdex)
+
+			if LV>=5 and LV<10:
+				ini=random.randint(0,9)
+				command=batalha(mon,ini,insperdéx,insperdex)
+
+			if LV>=10 and LV<15:
+				ini=random.randint(0,14)
+				command=batalha(mon,ini,insperdéx,insperdex)
+			
 			if command=="NADA":
 				XP=XP+1
 				print("Seu Inspermon ganhou experiência!")
@@ -156,10 +167,8 @@ def loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha):
 
 
 	print("Você está em  casa!\n Até a próxima!\n")
-	'''
-	if command=="SALVAR":
-		pauseplay="SALVAR"
-	'''
+	
+	
 	if command=="DORMIR":
 		pauseplay="PAUSE"
 	
@@ -169,50 +178,80 @@ def loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha):
 	return (pauseplay)
 
 
-	 
+
+
+clear=lambda: os.system("cls")
+clear()    #limpa a tela para iniciar o jogo
+
+
+print				 ("""                                                                                                           
+                     `@@  @@@  @@. +@@@@@  @@@@@@  @@@@@@ `@@@@@@, @@@; ,@@@  +@@@@@  ,@@, .@@                                                                                                          
+                     `@@  @@@. @@. @@@@@@` @@@@@@, @@@@@@ `@@@@@@# @@@@ +@@@ `@@@@@@@ ,@@@ .@@                                                                                                          
+                     `@@  @@@@ @@. @@      @@` @@; @@     `@@  #@# @@@@ @@@@ +@@  ,@@ ,@@@,.@@                                                                                                          
+                     `@@  @@@@,@@. #@@@@   @@``@@, @@@@@@ `@@@@@@: @@:@ @+@@ @@+   @@`,@@@@.@@                                                                                                          
+                     `@@  @@`@@@@.  ,@@@@` @@@@@@  @@@@@@ `@@@@@#  @@`@:@,@@ @@+   @@`,@@#@'@@                                                                                                          
+                     `@@  @@`#@@@.     @@' @@@@@.  @@     `@@ @@#  @@ @@@`@@ +@@  `@@ ,@@ @@@@                                                                                                          
+                     `@@  @@``@@@.`@@, @@' @@`     @@     `@@ :@@` @@ @@@ @@ ,@@; @@@ ,@@ #@@@                                                                                                          
+                     `@@  @@` #@@. @@@@@@` @@`     @@@@@@.`@@  @@# @@ +@@ @@  @@@@@@. ,@@  @@@                                                                                                          
+                     `@@  @@`  @@.  @@@@`  @@`     @@@@@@.`@@  '@@ @@ :@' @@   @@@@`  ,@@  '@@                                                                                                          
+                     """)                                                                                        
+
+time.sleep(5)	 
 	
 
 for h in range(20):
 	print(" ")		
 
+print("Selecione uma forma de jogo: ")
+print("LOAD  (para carregar seu jogo salvo)")
+print("NEW GAME  (para começar um jogo novo)")
+jogo=str(input("Como você gostaria de prosseguir?:  ")).upper()
 
 
+if jogo=="NEW GAME":
+	print ("Olá!")
+	time.sleep(2)
+	print("Bem vindo à Inspermon!")
+	time.sleep(2)
+	print ("Vamos começar!")
+	time.sleep(2)
+	print("Você vai precisar de um Insperdéx...")
+	time.sleep(2)
+	print("Agora, é hora de escolher o seu primeiro Inspermon para começar a sua aventura!")
+	time.sleep(4)
+	insp= str(input("Escolha um Inspermon: pythonxu, fegamel, deusvult: ")).upper()
 
-print ("Olá!")
-time.sleep(2)
-print("Bem vindo à Inspermon!")
-time.sleep(2)
-print ("Vamos começar!")
-time.sleep(2)
-print("Você vai precisar de um Insperdéx...")
-time.sleep(2)
-print("Agora, é hora de escolher o seu primeiro Inspermon para começar a sua aventura!")
-time.sleep(4)
-insp= str(input("Escolha um Inspermon: pythonxu, fegamel, deusvult: ")).upper()
-
-if insp=="PYTHONXU":
-	insperdéx[0]=(insperdex[0])
-	mon=0
+	if insp=="PYTHONXU":
+		insperdéx[0]=(insperdex[0])
+		mon=0
 	
-if insp=="FEGAMEL":
-	insperdéx[1]=(insperdex[1])
-	mon=1
+	if insp=="FEGAMEL":
+		insperdéx[1]=(insperdex[1])
+		mon=1
 
-if insp=="DEUSVULT":
-	insperdéx[2]=(insperdex[2])
-	mon=2
+	if insp=="DEUSVULT":
+		insperdéx[2]=(insperdex[2])
+		mon=2
 
-time.sleep(1.5)
-print("Você escolheu {}!".format(insperdex[mon][0]))
-command="nada"
+	time.sleep(1.5)
+	print("Você escolheu {}!".format(insperdex[mon][0]))
+	command="nada"
+
+if jogo=="LOAD":
+	
+	#realizar "load" do save
+
+	print("Bem vindo de volta!")
+
 
 time.sleep(2.5)
 print("Lembre-se: quando você vir a opção 'O que você quer fazer?', Você poderá escolher entre:")
 print("------passear (para achar inspermons)")
-print("------dormir (para retornar a sua casa e pausa o jogo)")
+print("------dormir (para retornar a sua casa e pausar o jogo)(leva ao 'MENU' e a opção 'SAVE')")
 print("------insperdéx (para ver os innspermons que você encontrou e venceu)")
 print("------trocar (para substituir o inspermon que você utilizara na próxima batalha)")
-print("------salvar (salva seu Insperdéx para utilizá-lo depois)")
+
+
 
 
 
@@ -251,16 +290,8 @@ while True:         #Loop fechado em que o jogo funciona
 		print ("Jogo salvo! ATÉ A PRÓXIMA!")
 		break
 	
+	
 	if pauseplay=="DERROTA":
 		print("FIM DE JOGO")
-		time.sleep(2)
-		print("Salvando...")
-		time.sleep(3)
-		print("Jogo Salvo")
-		
-		with open("save.txt","w") as save:
-			save.writelines({}.format(insperdéx))
-			save.writelines({}.format(LV))
-			save.writelines({}.format(XP))
 		
 		break
