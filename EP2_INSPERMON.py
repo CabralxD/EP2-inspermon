@@ -164,6 +164,12 @@ def loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha):
 			for h in range(3):
 				print("...")
 				time.sleep(1)
+				print("Essa não é uma opção válida")
+				print("Lembre-se: quando você vir a opção 'O que você quer fazer?', Você poderá escolher entre:")
+				print("------passear (para achar inspermons)")
+				print("------dormir (para retornar a sua casa e pausar o jogo)(leva ao 'MENU' e a opção 'SAVE')")
+				print("------insperdéx (para ver os innspermons que você encontrou e venceu)")
+				print("------trocar (para substituir o inspermon que você utilizara na próxima batalha)")
 
 
 	print("Você está em  casa!\n Até a próxima!\n")
@@ -180,20 +186,20 @@ def loopjogo(command,mon,insperdéx,insperdex,XP,LV,batalha):
 
 
 
-clear=lambda: os.system("cls")
-clear()    #limpa a tela para iniciar o jogo
+for h in range(30):
+	print(" ")
 
 
 print				 ("""                                                                                                           
-                     `@@  @@@  @@. +@@@@@  @@@@@@  @@@@@@ `@@@@@@, @@@; ,@@@  +@@@@@  ,@@, .@@                                                                                                          
-                     `@@  @@@. @@. @@@@@@` @@@@@@, @@@@@@ `@@@@@@# @@@@ +@@@ `@@@@@@@ ,@@@ .@@                                                                                                          
-                     `@@  @@@@ @@. @@      @@` @@; @@     `@@  #@# @@@@ @@@@ +@@  ,@@ ,@@@,.@@                                                                                                          
-                     `@@  @@@@,@@. #@@@@   @@``@@, @@@@@@ `@@@@@@: @@:@ @+@@ @@+   @@`,@@@@.@@                                                                                                          
-                     `@@  @@`@@@@.  ,@@@@` @@@@@@  @@@@@@ `@@@@@#  @@`@:@,@@ @@+   @@`,@@#@'@@                                                                                                          
-                     `@@  @@`#@@@.     @@' @@@@@.  @@     `@@ @@#  @@ @@@`@@ +@@  `@@ ,@@ @@@@                                                                                                          
-                     `@@  @@``@@@.`@@, @@' @@`     @@     `@@ :@@` @@ @@@ @@ ,@@; @@@ ,@@ #@@@                                                                                                          
-                     `@@  @@` #@@. @@@@@@` @@`     @@@@@@.`@@  @@# @@ +@@ @@  @@@@@@. ,@@  @@@                                                                                                          
-                     `@@  @@`  @@.  @@@@`  @@`     @@@@@@.`@@  '@@ @@ :@' @@   @@@@`  ,@@  '@@                                                                                                          
+                     `@@   @@@  @@.  +@@@@@   @@@@@@   @@@@@@  `@@@@@@,  @@@; ,@@@   +@@@@@  , @@, .@@                                                                                                          
+                     `@@   @@@. @@.  @@@@@@`  @@@@@@,  @@@@@@  `@@@@@@#  @@@@ +@@@  `@@@@@@@  ,@@@ .@@                                                                                                          
+                     `@@   @@@@ @@.  @@       @@` @@;  @@      `@@  #@#  @@@@ @@@@  +@@  ,@@  ,@@@,.@@                                                                                                          
+                     `@@   @@@@,@@.  #@@@@    @@``@@,  @@@@@@  `@@@@@@:  @@:@ @+@@  @@+   @@` ,@@@@.@@                                                                                                          
+                     `@@   @@`@@@@.   ,@@@@`  @@@@@@   @@@@@@  `@@@@@#   @@`@:@,@@  @@+   @@` ,@@#@'@@                                                                                                          
+                     `@@   @@`#@@@.      @@'  @@@@@.   @@      `@@ @@#   @@ @@@`@@  +@@  `@@  ,@@ @@@@                                                                                                          
+                     `@@   @@``@@@.` @@, @@'  @@`      @@      `@@ :@@`  @@ @@@ @@ , @@; @@@  ,@@ #@@@                                                                                                          
+                     `@@   @@` #@@.  @@@@@@`  @@`      @@@@@@. `@@  @@#  @@ +@@ @@   @@@@@@.  ,@@  @@@                                                                                                          
+                     `@@   @@`  @@.   @@@@`   @@`      @@@@@@. `@@  '@@  @@ :@' @@    @@@@`   ,@@  '@@                                                                                                          
                      """)                                                                                        
 
 time.sleep(5)	 
