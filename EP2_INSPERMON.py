@@ -249,12 +249,12 @@ if jogo=="CARREGAR":
 	for h in range(len(insperdéx)):
 		print(insperdéx[h])
 	print("Escolha um Inspermon de seu Insperdéx")
-	y=0
-	mon=y
+	
 	x=int (input("Diga o número do Inspermon que você gostaria de utilizar em suas batalhas: "))
-	mon=insperdéx[x]
+	mon=x
 	if not (x in insperdéx):
-		mon=y
+		insperdéx[0]=insperdex[0]
+		mon=0
 
 time.sleep(2.5)
 print("Lembre-se: quando você vir a opção 'O que você quer fazer?', Você poderá escolher entre:")
